@@ -4,7 +4,6 @@ This is an implementation of [Conway's Game Of Life](https://en.wikipedia.org/wi
 Windows and Linux.  
 
 ## How it's used
----
 You can use it like this: you load a text file which contains a small header which specifies the dimensions and rules of the world in the format: `width`x`height` `aliveRule`/`birthRule`.  
 This looks something like this:  
 `10x10 23/3`  
@@ -22,8 +21,6 @@ An example file could look like this:
 This will put a glider into the upper left corner.
 
 ## The Console
----
-
 When the application is started, it generates a world with dimensions 10x10 and rules 23/3 (default rules). You can then either [load](commands.md#load) a world file,
 create a new world with [new](commands.md#new) or set single cells to a specified state with [set](commands.md#set). You can step one generation forwards if you just hit enter.
 If you're done you can [exit](commands.md#exit) the application.

@@ -1,11 +1,8 @@
 #include "gol.h"
 #include "commands.h"
+#include "config.h"
 #include <string.h>
 #include <stdlib.h>
-#define STRINGIFY(x) #x
-#define MAX_INPUT 50
-
-const char* PROG_VERSION_STR = STRINGIFY(PROG_VERSION);
 
 const static struct CommandLUTentry commandLUT[] = {
     {"exit", CommandExit},
@@ -15,7 +12,12 @@ const static struct CommandLUTentry commandLUT[] = {
     {"clear", CommandClear},
     {"save", CommandSave},
     {"load", CommandLoad},
-    {"new", CommandNew}
+    {"new", CommandNew},
+    {"rules", CommandRules},
+    {"info", CommandInfo},
+    {"play", CommandPlay},
+    {"step", CommandStep},
+    {"about", CommandAbout}
 };
 
 int main(int argc, char* argv[])
@@ -29,16 +31,16 @@ int main(int argc, char* argv[])
         {
             char* filename = malloc(strlen(argv[1]) + 5);
             sprintf(filename, "%s%s", argv[1], ".txt");
-            ReadFile(filename, &world, &rules);
+            ReadFromFile(filename, &world, &rules);
         }
         else
         {
-            ReadFile(argv[1], &world, &rules);
+            ReadFromFile(argv[1], &world, &rules);
         }
     }
     else
     {
-        ReadFile("default.txt", &world, &rules);
+        ReadFromFile("default.txt", &world, &rules);
     }
 
 
@@ -54,7 +56,7 @@ int main(int argc, char* argv[])
 
     while (true)
     {
-        if (executed < 0)
+        if (executed == -1)
         {
             ClearScreen();
             DrawWorld(world);
@@ -77,13 +79,14 @@ int main(int argc, char* argv[])
 
         executed = ExecCommand(com, commandLUT, sizeof(commandLUT) / sizeof(*commandLUT), world, rules);
 
+        DestroyCommand(&com);
         if (executed == 0)
         {
             break;
         }
-
-        DestroyCommand(&com);
     }
+
+    
 
     DestroyWorld(&world);
     DestroyRules(&rules);

@@ -25,9 +25,9 @@ struct Command
     size_t argc;
 };
 
-void WriteFile(const char* filename, const struct World* world, const struct Rules* rules);
+void WriteToFile(const char* filename, const struct World* world, const struct Rules* rules);
 void CreateDefault();
-void ReadFile(const char* filename, struct World** world, struct Rules** rules);
+void ReadFromFile(const char* filename, struct World** world, struct Rules** rules);
 size_t CountOccurences(const char* string, const char character);
 bool StrIsOneOf(const char* string, const char** strArr, const size_t strArrLen);
 void LowerCase(char* string);

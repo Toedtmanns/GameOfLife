@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
-void WriteFile(const char* filename, const struct World* world, const struct Rules* rules)
+void WriteToFile(const char* filename, const struct World* world, const struct Rules* rules)
 {
     FILE* file = fopen(filename, "w");
 
@@ -19,7 +19,7 @@ void WriteFile(const char* filename, const struct World* world, const struct Rul
     }
     fclose(file);
 }
-void ReadFile(const char* filename, struct World** world, struct Rules** rules)
+void ReadFromFile(const char* filename, struct World** world, struct Rules** rules)
 {
     FILE* file = fopen(filename, "r");
 

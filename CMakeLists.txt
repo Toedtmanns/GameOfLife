@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 
-project(GameOfLife VERSION 1.0.0 LANGUAGES C)
+project(GameOfLife VERSION 1.1.0 LANGUAGES C)
 
 add_compile_definitions(PROG_VERSION=${GameOfLife_VERSION})
 
@@ -11,6 +11,7 @@ endif()
 add_executable(GameOfLife
     ./source/main.c
     ./source/gol.c
-    ./source/commands.c)
+    ./source/commands.c
+    ./source/osFunc.c)
 
 target_include_directories(GameOfLife PUBLIC ./include)
